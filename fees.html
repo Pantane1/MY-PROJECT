@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fee Management — EduPortal</title>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+
+    <nav class="sidebar">
+        <div class="sidebar-brand">Edu<span>Portal</span></div>
+        <ul class="sidebar-menu">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="admissions.html">Admissions</a></li>
+            <li><a href="courses.html">Courses Offered</a></li>
+            <li><a href="accommodation.html">Accommodation Booking</a></li>
+            <li><a href="fees.html" class="active">Fee Management</a></li>
+            <li><a href="about.html">About Us</a></li>
+            <li><a href="help.html">Help Desk</a></li>
+            <li><a href="login.html">Login</a></li>
+        </ul>
+        <div class="sidebar-footer">
+            &copy; 2026 EduPortal — Mount Kenya University
+        </div>
+    </nav>
+
+    <main class="main-content form-page">
+        <div class="form-container">
+            <h2>Fee Management &amp; Registration Form</h2>
+            <form action="/submit-fee-details" method="POST" id="feeManagementForm">
+
+                <fieldset>
+                    <legend>Student &amp; Academic Information</legend>
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label for="studentId">Student ID *</label>
+                            <input type="text" id="studentId" name="student_id" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="fullName">Full Name *</label>
+                            <input type="text" id="fullName" name="full_name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="course">Course *</label>
+                            <select id="course" name="course" required>
+                                <option value="">Choose a program</option>
+                                <option value="BIT">BSc. Information Technology</option>
+                                <option value="BBIT">BSc. Business Information Technology</option>
+                                <option value="BCE">BSc. Computer Engineering</option>
+                                <option value="BAI">Bachelor of Artificial Intelligence</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="semester">Semester *</label>
+                            <select id="semester" name="semester" required>
+                                <option value="">Select semester</option>
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                            </select>
+                        </div>
+                    </div>
+                </fieldset>
+
+                <fieldset>
+                    <legend>Fee Structure (KSH)</legend>
+                    <table class="fee-breakdown">
+                        <tr><th>Component</th><th>Amount</th></tr>
+                        <tr><td>Tuition Fee</td><td><input type="number" id="tuitionFee" value="70000" readonly></td></tr>
+                        <tr><td>Statutory Fee</td><td><input type="number" id="statutoryFee" value="10000" readonly></td></tr>
+                        <tr><td>Discount</td><td><input type="number" id="discount" value="0" min="0"></td></tr>
+                        <tr style="font-weight: bold;"><td>Total</td><td><input type="number" id="totalAmount" value="80000" readonly></td></tr>
+                    </table>
+                </fieldset>
+
+                <fieldset>
+                    <legend>Payment Details</legend>
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label>Method *</label>
+                            <div class="payment-methods">
+                                <label class="radio-option"><input type="radio" name="pay" value="card" required> Card</label>
+                                <label class="radio-option"><input type="radio" name="pay" value="mpesa"> M-Pesa</label>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="transId">Transaction ID *</label>
+                            <input type="text" id="transId" name="trans_id" required>
+                        </div>
+                    </div>
+                </fieldset>
+
+                <div class="btn-container">
+                    <button type="submit" class="btn btn-primary btn-block">Submit Fee Record</button>
+                </div>
+            </form>
+        </div>
+    </main>
+
+    <script>
+        // Recalculates the total whenever the discount changes.
+        // (Original bug: mismatched quotes + wrong element id meant this never ran.)
+        const tuition = document.getElementById('tuitionFee');
+        const statutory = document.getElementById('statutoryFee');
+        const discount = document.getElementById('discount');
+        const total = document.getElementById('totalAmount');
+
+        function calculateTotal() {
+            const sum = parseFloat(tuition.value) + parseFloat(statutory.value) - (parseFloat(discount.value) || 0);
+            total.value = sum.toFixed(2);
+        }
+
+        discount.addEventListener('input', calculateTotal);
+    </script>
+
+</body>
+</html>
