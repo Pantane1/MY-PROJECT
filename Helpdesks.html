@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Help Desk</title>
+    <style>
+        /* --- Reset & Base Styles --- */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: #f4f6f9;
+            color: #333;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 1rem;
+        }
+
+        /* --- Contact Card Container --- */
+        .contact-card {
+            background: white;
+            max-width: 500px;
+            width: 100%;
+            padding: 2.5rem;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+            text-align: center;
+        }
+
+        .contact-card h1 {
+            color: #1e3c72;
+            margin-bottom: 0.5rem;
+            font-size: 2rem;
+        }
+
+        .contact-card p {
+            color: #666;
+            margin-bottom: 2rem;
+            font-size: 1rem;
+        }
+
+        /* --- Contact Methods List --- */
+        .contact-methods {
+            display: flex;
+            flex-direction: column;
+            gap: 1.2rem;
+        }
+
+        .method-item {
+            display: flex;
+            align-items: center;
+            background: #f8fafc;
+            padding: 1rem 1.5rem;
+            border-radius: 8px;
+            border: 1px solid #e2e8f0;
+            text-decoration: none;
+            color: #333;
+            transition: all 0.2s ease;
+        }
+
+        .method-item:hover {
+            background: #f1f5f9;
+            border-color: #cbd5e1;
+            transform: translateY(-2px);
+        }
+
+        .icon {
+            font-size: 1.5rem;
+            margin-right: 1rem;
+            min-width: 30px;
+            text-align: center;
+        }
+
+        .details {
+            text-align: left;
+        }
+
+        .details label {
+            display: block;
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            color: #64748b;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+        }
+
+        .details span {
+            font-size: 1.05rem;
+            font-weight: 500;
+            color: #1e293b;
+        }
+
+        /* --- Availability Note --- */
+        .hours {
+            margin-top: 2rem;
+            font-size: 0.85rem;
+            color: #94a3b8;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="contact-card">
+        <h1>Mount Kenya University</h1>
+        <h2>Help Desk Support</h2>
+        <p> For assistance, Get in touch with our team.</p>
+
+        <div class="contact-methods">
+            
+            <!-- Email -->
+            <a href="mailto:otienodaniel491.com" class="method-item">
+                <span class="icon">✉️</span>
+                <div class="details">
+                    <label>Email Us</label>
+                    <span>otienodaniel491@gmail.com</span>
+                </div>
+            </a>
+
+            <!-- Phone -->
+            <a href="tel:+254797007113" class="method-item">
+                <span class="icon">📞</span>
+                <div class="details">
+                    <label>Call Us Anytime</label>
+                    <span>+254 797997113</span>
+                </div>
+            </a>
+
+            <!-- Live Chat / Ticket -->
+            <a href="#" class="method-item">
+                <span class="icon">💬</span>
+                <div class="details">
+                    <label>Live Chat</label>
+                    <span>Chat with an Agent</span>
+                </div>
+            </a>
+
+        </div>
+
+        <div class="hours">
+            Available Monday - Saturday, 8:00 AM - 20:00 PM
+        </div>
+    </div>
+
+</body>
+</html>

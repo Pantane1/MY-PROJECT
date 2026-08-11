@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Registration Portal - Dashboard</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            display: flex;
+            min-height: 100vh;
+            background-color: #f4f6f9;
+        }
+
+        /* --- SIDEBAR STYLES --- */
+        .sidebar {
+            width: 260px;
+            background-color: #0b2265; /* Dark blue matching your theme */
+            color: #ffffff;
+            display: flex;
+            flex-direction: column;
+            position: fixed;
+            top: 0;
+            bottom: 0;
+            left: 0;
+            padding: 20px 0;
+        }
+
+        .sidebar-brand {
+            padding: 10px 25px;
+            font-size: 20px;
+            font-weight: bold;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            padding-bottom: 20px;
+            margin-bottom: 20px;
+        }
+
+        .sidebar-menu {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+        }
+
+        .sidebar-menu li a {
+            display: block;
+            padding: 12px 25px;
+            color: #ecf0f1;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+
+        /* Hover & Active States */
+        .sidebar-menu li a:hover, 
+        .sidebar-menu li a.active {
+            background-color: #1e3d96;
+            border-left: 4px solid #00c853; /* Green accent matching your registration button */
+            padding-left: 21px;
+        }
+
+        .sidebar-footer {
+            margin-top: auto;
+            padding: 20px 25px;
+            font-size: 11px;
+            color: #a0aec0;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        /* --- MAIN CONTENT STYLES --- */
+        .main-content {
+            margin-left: 260px; /* Matches sidebar width */
+            flex-1: 1;
+            padding: 40px;
+            width: calc(100% - 260px);
+        }
+
+        .header-banner {
+            background: linear-gradient(135deg, #0b2265, #1e3d96);
+            color: white;
+            padding: 30px;
+            border-radius: 10px;
+            margin-bottom: 30px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+        }
+
+        .header-banner h1 {
+            margin-bottom: 10px;
+            font-size: 28px;
+        }
+
+        /* Action Buttons */
+        .btn-container {
+            margin-top: 20px;
+            display: flex;
+            gap: 15px;
+        }
+
+        .btn {
+            padding: 12px 24px;
+            border-radius: 6px;
+            text-decoration: none;
+            font-weight: bold;
+            display: inline-block;
+            transition: transform 0.2s;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+        }
+
+        .btn-primary {
+            background-color: #00c853;
+            color: white;
+        }
+
+        .btn-secondary {
+            border: 2px solid white;
+            color: white;
+        }
+
+        /* Grid for Capabilities */
+        .grid-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+        }
+
+        .card {
+            background: white;
+            padding: 25px;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.02);
+            border: 1px solid #e2e8f0;
+        }
+
+        .card h2 {
+            color: #0b2265;
+            margin-bottom: 12px;
+            font-size: 20px;
+        }
+
+        .card p {
+            color: #4a5568;
+            line-height: 1.6;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- SIDEBAR -->
+    <nav class="sidebar">
+        <div class="sidebar-brand">JD Developers v1.0</div>
+        <ul class="sidebar-menu">
+            <li><a href="#home" class="active">Home</a></li>
+            <li><a href="admissions.html">Admissions Info</a></li>
+            <li><a href="courses.html">Courses Offered</a></li>
+            <li><a href="accommodation.html">Accommodation Booking</a></li>
+            <li><a href="results.html">Results</a></li>
+            <li><a href="About Us.html">About Us</a></li>
+            <li><a href="help.html">Help Desk</a></li>
+            <li><a href="login.html">Login</a></li>
+        </ul>
+        <div class="sidebar-footer">
+            © 2026 JD Developers System
+        </div>
+    </nav>
+
+    <!-- MAIN CONTENT AREA -->
+    <main class="main-content">
+        
+        <!-- Welcome Banner -->
+        <div class="header-banner">
+            <h1>Welcome to the Mount Kenya University Student Registration Portal</h1>
+            <p>Your gateway to academic excellence. Register for classes, manage your profile, track your curriculum progress, and access financial accounts all in one secure space.</p>
+            
+            <div class="btn-container">
+                <a href="register.html" class="btn btn-primary">New Student Registration</a>
+                <a href="login.html" class="btn btn-secondary">Sign In to Dashboard</a>
+            </div>
+        </div>
+
+        <!-- Capabilities Grid -->
+        <div class="grid-container">
+            <div class="card">
+                <h2>Course Enrollment</h2>
+                <p>Browse available modules, select your required core classes, and register for upcoming semesters seamlessly.</p>
+            </div>
+            
+            <div class="card">
+                <h2>Academic Transcript</h2>
+                <p>View your cumulative GPA, grades per completed semester, and monitor your total credits earned toward graduation.</p>
+            </div>
+            
+            <div class="card">
+                <h2>Fee Management</h2>
+                <p>Review current tuition balances, track official invoice history, and securely complete your school payments online.</p>
+            </div>
+        </div>
+
+    </main>
+
+</body>
+</html>
