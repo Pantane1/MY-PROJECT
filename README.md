@@ -163,7 +163,7 @@ Alternatively, use a desktop client like DBeaver or TablePlus with the same conn
 
 ## 📜 License
 
-[© 2026 **Pantane**](https://github.com/Pantane1/pantane-hub/blob/main/LICENSE). All rights reserved. Built with precision in Kenya 🇰🇪
+[© 2026 **Pantane**](https://github.com/Pantane1/MY-PROJECT/blob/main/LICENSE). All rights reserved. Built with precision in Kenya 🇰🇪
 
 <p align="center">
   <a href="https://www.pantane.is-a.dev"><img src="http://readme-typing-svg.herokuapp.com?color=ACAF50&center=true&vCenter=true&multiline=false&lines=Built+Different" alt="pantane"></a>
