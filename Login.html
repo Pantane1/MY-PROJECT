@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login — EduPortal</title>
     <link rel="stylesheet" href="css/styles.css">
+    <script src="js/api.js" defer></script>
 </head>
 <body>
     <div class="auth-page">
@@ -12,7 +13,7 @@
             <div class="brand">Edu<span style="color: var(--gold);">Portal</span></div>
             <p class="subtitle">Student Registration &amp; Admissions</p>
 
-            <form action="/login-endpoint" method="POST" class="login-form">
+            <form id="loginForm" class="login-form">
                 <div class="input-group">
                     <label for="reg-number">Student Registration Number</label>
                     <input
@@ -46,7 +47,7 @@
                     </label>
                 </div>
 
-                <button type="submit" class="btn btn-primary btn-block">Log In</button>
+                <button type="submit" class="btn btn-primary btn-block" id="loginBtn">Log In</button>
             </form>
 
             <div class="auth-footer">
@@ -54,5 +55,35 @@
             </div>
         </div>
     </div>
+
+    <script>
+        const form = document.getElementById('loginForm');
+        const btn = document.getElementById('loginBtn');
+
+        form.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            btn.disabled = true;
+            btn.textContent = 'Logging in...';
+
+            const payload = {
+                registrationNumber: document.getElementById('reg-number').value,
+                password: document.getElementById('password').value,
+            };
+
+            try {
+                const data = await apiRequest('/auth/login', {
+                    method: 'POST',
+                    body: JSON.stringify(payload),
+                });
+                setSession(data.token, data.fullName, data.registrationNumber);
+                showMessage(form, `Welcome back, ${data.fullName}. Redirecting...`, 'success');
+                setTimeout(() => { window.location.href = 'index.html'; }, 1200);
+            } catch (err) {
+                showMessage(form, err.message, 'error');
+                btn.disabled = false;
+                btn.textContent = 'Log In';
+            }
+        });
+    </script>
 </body>
 </html>

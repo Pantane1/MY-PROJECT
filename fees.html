@@ -5,6 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Fee Management — EduPortal</title>
     <link rel="stylesheet" href="css/styles.css">
+    <script src="js/api.js"></script>
+    <script>requireLogin();</script>
 </head>
 <body>
 
@@ -35,7 +37,7 @@
                     <div class="form-grid">
                         <div class="form-group">
                             <label for="studentId">Student ID *</label>
-                            <input type="text" id="studentId" name="student_id" required>
+                            <input type="text" id="studentId" readonly>
                         </div>
                         <div class="form-group">
                             <label for="fullName">Full Name *</label>
@@ -91,15 +93,20 @@
                 </fieldset>
 
                 <div class="btn-container">
-                    <button type="submit" class="btn btn-primary btn-block">Submit Fee Record</button>
+                    <button type="submit" class="btn btn-primary btn-block" id="feeBtn">Submit Fee Record</button>
                 </div>
             </form>
         </div>
     </main>
 
     <script>
+        document.getElementById('studentId').value = localStorage.getItem('eduportal_reg') || '';
+        document.getElementById('fullName').value = localStorage.getItem('eduportal_name') || '';
+
         // Recalculates the total whenever the discount changes.
         // (Original bug: mismatched quotes + wrong element id meant this never ran.)
+        // This is a live preview only — the server always recalculates the
+        // authoritative total from its own fee constants before saving.
         const tuition = document.getElementById('tuitionFee');
         const statutory = document.getElementById('statutoryFee');
         const discount = document.getElementById('discount');
@@ -111,6 +118,40 @@
         }
 
         discount.addEventListener('input', calculateTotal);
+
+        const form = document.getElementById('feeManagementForm');
+        const btn = document.getElementById('feeBtn');
+
+        form.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            btn.disabled = true;
+            btn.textContent = 'Submitting...';
+
+            const payload = {
+                fullName: document.getElementById('fullName').value,
+                course: document.getElementById('course').value,
+                semester: document.getElementById('semester').value,
+                discount: discount.value,
+                paymentMethod: form.querySelector('input[name="pay"]:checked')?.value,
+                transactionId: document.getElementById('transId').value,
+            };
+
+            try {
+                const data = await apiRequest('/fees', { method: 'POST', body: JSON.stringify(payload) });
+                showMessage(form, `Fee record submitted. Total: KSH ${data.totalAmount}`, 'success');
+                form.reset();
+                document.getElementById('studentId').value = localStorage.getItem('eduportal_reg') || '';
+                document.getElementById('fullName').value = localStorage.getItem('eduportal_name') || '';
+                document.getElementById('tuitionFee').value = 70000;
+                document.getElementById('statutoryFee').value = 10000;
+                document.getElementById('totalAmount').value = 80000;
+            } catch (err) {
+                showMessage(form, err.message, 'error');
+            } finally {
+                btn.disabled = false;
+                btn.textContent = 'Submit Fee Record';
+            }
+        });
     </script>
 
 </body>
