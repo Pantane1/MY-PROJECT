@@ -1,5 +1,3 @@
-// EduPortal — shared frontend API helper
-// Change API_BASE to your deployed backend URL when you go live (e.g. Render).
 const API_BASE = 'https://mku-ep.onrender.com/api';
 
 function getToken() {
